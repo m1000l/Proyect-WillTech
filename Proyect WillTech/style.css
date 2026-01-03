@@ -489,6 +489,30 @@ p {
     flex-direction: column;
 }
 
+.service-card.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: rgba(15, 15, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.service-card.disabled i,
+.service-card.disabled h3,
+.service-card.disabled p,
+.service-card.disabled ul {
+    color: #4a4a4a !important;
+    text-shadow: none !important;
+}
+
+/* Force specific override for the badge inside disabled card */
+.service-card.disabled h3 span {
+    background: #e60000 !important;
+    /* Pure Red */
+    color: #ffffff !important;
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(230, 0, 0, 0.3);
+}
+
 .service-card .service-list {
     margin-top: auto;
     /* Push list to bottom if needed, or just spacing */
