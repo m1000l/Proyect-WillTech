@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
 <body>
@@ -52,51 +52,100 @@
             </div>
 
             <form id="bookingForm">
-                <!-- Step 1: Device Category -->
+                <!-- Step 1: Device Category (Multi-level) -->
                 <div class="form-step active" data-step="1">
-                    <h3>¿Qué equipo deseas reparar?</h3>
-                    <div class="form-group">
-                        <div class="selection-grid"
-                            style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
-                            <label class="selection-card">
-                                <input type="radio" name="deviceCategory" value="torre" checked>
-                                <div class="card-content">
-                                    <i class="fas fa-server"></i>
-                                    <h4>Torre</h4>
-                                </div>
-                            </label>
-                            <label class="selection-card">
-                                <input type="radio" name="deviceCategory" value="aio">
-                                <div class="card-content">
-                                    <i class="fas fa-desktop"></i>
-                                    <h4>All-in-One</h4>
-                                </div>
-                            </label>
-                            <label class="selection-card">
-                                <input type="radio" name="deviceCategory" value="minipc">
-                                <div class="card-content">
-                                    <i class="fas fa-microchip"></i>
-                                    <h4>Mini PC</h4>
-                                </div>
-                            </label>
-                            <label class="selection-card">
-                                <input type="radio" name="deviceCategory" value="laptop">
-                                <div class="card-content">
-                                    <i class="fas fa-laptop"></i>
-                                    <h4>Laptop</h4>
-                                </div>
-                            </label>
-                            <label class="selection-card">
-                                <input type="radio" name="deviceCategory" value="console">
-                                <div class="card-content">
-                                    <i class="fas fa-gamepad"></i>
-                                    <h4>Consola</h4>
-                                </div>
-                            </label>
+
+                    <!-- Level Navigation (Back Button) -->
+                    <div class="level-navigation" style="margin-bottom: 1.5rem; display: none;">
+                        <button type="button" class="btn-back-level" id="btnBackLevel">
+                            <i class="fas fa-chevron-left"></i> Volver a Categorías
+                        </button>
+                    </div>
+
+                    <h3 id="step1Title">¿Qué equipo deseas reparar?</h3>
+
+                    <!-- LEVEL 1: Master Selection -->
+                    <div id="level-1-selection" class="selection-grid two-columns">
+                        <div class="selection-card master-card" data-target="pc">
+                            <div class="card-content">
+                                <i class="fas fa-desktop icon-xl"></i>
+                                <h4>PC & Laptops</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Torres, AIO,
+                                    Portátiles</p>
+                            </div>
+                        </div>
+                        <div class="selection-card master-card" data-target="console">
+                            <div class="card-content">
+                                <i class="fas fa-gamepad icon-xl"></i>
+                                <h4>Consolas</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">PlayStation,
+                                    Xbox, Handhelds</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-buttons">
-                        <button type="button" class="btn btn-primary btn-next">Siguiente</button>
+
+                    <!-- LEVEL 2: Sub-type Selection -->
+                    <div id="level-2-selection" style="display: none;">
+
+                        <!-- Subtypes for PC -->
+                        <div id="subtype-pc" class="subtype-group" style="display: none;">
+                            <div class="selection-grid">
+                                <label class="selection-card">
+                                    <input type="radio" name="deviceCategory" value="torre">
+                                    <div class="card-content">
+                                        <i class="fas fa-server"></i>
+                                        <h4>Torre</h4>
+                                    </div>
+                                </label>
+                                <label class="selection-card">
+                                    <input type="radio" name="deviceCategory" value="laptop">
+                                    <div class="card-content">
+                                        <i class="fas fa-laptop"></i>
+                                        <h4>Laptop</h4>
+                                    </div>
+                                </label>
+                                <label class="selection-card">
+                                    <input type="radio" name="deviceCategory" value="aio">
+                                    <div class="card-content">
+                                        <i class="fas fa-tv"></i>
+                                        <h4>All-in-One</h4>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Subtypes for Consoles -->
+                        <div id="subtype-console" class="subtype-group" style="display: none;">
+                            <div class="selection-grid">
+                                <label class="selection-card">
+                                    <input type="radio" name="deviceCategory" value="console-ps">
+                                    <div class="card-content">
+                                        <i class="fab fa-playstation"></i>
+                                        <h4>PlayStation</h4>
+                                    </div>
+                                </label>
+                                <label class="selection-card">
+                                    <input type="radio" name="deviceCategory" value="console-xbox">
+                                    <div class="card-content">
+                                        <i class="fab fa-xbox"></i>
+                                        <h4>Xbox</h4>
+                                    </div>
+                                </label>
+                                <label class="selection-card">
+                                    <input type="radio" name="deviceCategory" value="console-portable">
+                                    <div class="card-content">
+                                        <i class="fas fa-gamepad"></i>
+                                        <h4>Handhelds</h4>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-buttons" style="display: none;">
+                        <!-- Next button hidden for Zero-Click flow -->
+                        <button type="button" class="btn btn-primary btn-next" disabled>Siguiente</button>
                     </div>
                 </div>
 

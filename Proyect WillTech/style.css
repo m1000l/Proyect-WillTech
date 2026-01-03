@@ -884,6 +884,123 @@ footer {
     }
 }
 
+/* Wizard Multi-Level Styles */
+
+.two-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.master-card .card-content {
+    padding: 3rem 2rem;
+    background: rgba(19, 19, 31, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.master-card:hover .card-content {
+    background: rgba(0, 242, 255, 0.05);
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.15);
+}
+
+.master-card .icon-xl {
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4));
+    transition: var(--transition);
+}
+
+.master-card:hover .icon-xl {
+    transform: scale(1.1);
+}
+
+.btn-back-level {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.btn-back-level:hover {
+    color: var(--primary);
+    text-shadow: 0 0 8px rgba(0, 242, 255, 0.5);
+}
+
+.btn-back-level i {
+    font-size: 0.8rem;
+}
+
+/* Wizard Animations */
+.slide-out-left {
+    animation: slideOutLeft 0.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-right {
+    animation: slideInRight 0.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-out-right {
+    animation: slideOutRight 0.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideOutLeft {
+    to {
+        opacity: 0;
+        transform: translateX(-50px);
+        display: none;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    to {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .two-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ... existing code ... */
 
 /* Animations */
