@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastreo de Servicio | WilTech Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tracking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header (Simplified) -->
+    <header class="main-header glass-effect">
+        <div class="logo-container">
+            <h1 class="logo-text">WilTech <span class="highlight">Solutions</span></h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="contact.html" class="nav-link">Agendar</a>
+        </nav>
+    </header>
+
+    <main class="tracking-container">
+
+        <div class="tracking-hero">
+            <h2>Rastreo de <span class="highlight">Servicio</span></h2>
+            <p>Ingresa tu ID de seguimiento para ver el estado de tu equipo.</p>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box-container">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="trackingInput" placeholder="Ej: PC-4429 o PORT-5521" autocomplete="off">
+                <button id="btnTrack" class="btn btn-primary">Rastrear</button>
+            </div>
+            <p id="searchError" class="error-msg" style="display: none; color: #ff0055; margin-top: 1rem;"><i
+                    class="fas fa-exclamation-circle"></i> ID no encontrado. Verifica tu comprobante.</p>
+        </div>
+
+        <!-- Timeline Result (Hidden by default) -->
+        <div id="trackingResult" class="tracking-result hidden">
+
+            <div class="device-info-card glass-panel">
+                <h3 id="resDeviceType">Consola PlayStation 5</h3>
+                <span class="tracking-badge" id="resStatusBadge">En Reparación</span>
+                <p class="service-meta">ID: <span id="resId" class="text-neon">CONS-1234</span> | Ingreso: <span
+                        id="resDate">01/01/2026</span></p>
+                <p class="service-details" id="resDetails">Detalles...</p>
+            </div>
+
+            <div class="timeline-wrapper">
+                <div class="timeline-track">
+                    <div class="timeline-fill" id="timelineFill"></div>
+                </div>
+
+                <!-- Status Points -->
+                <div class="timeline-step" data-status="Pendiente de Ingreso">
+                    <div class="step-circle"><i class="fas fa-box-open"></i></div>
+                    <span class="step-label">Recibido</span>
+                </div>
+                <div class="timeline-step" data-status="Diagnóstico">
+                    <div class="step-circle"><i class="fas fa-stethoscope"></i></div>
+                    <span class="step-label">Diagnóstico</span>
+                </div>
+                <div class="timeline-step" data-status="En Reparación">
+                    <div class="step-circle"><i class="fas fa-wrench"></i></div>
+                    <span class="step-label">Reparación</span>
+                </div>
+                <div class="timeline-step" data-status="Listo para Entrega">
+                    <div class="step-circle"><i class="fas fa-check-double"></i></div>
+                    <span class="step-label">Listo</span>
+                </div>
+            </div>
+
+            <!-- Technical Notes -->
+            <div class="tech-notes glass-panel">
+                <h4><i class="fas fa-clipboard-list" style="color: var(--primary);"></i> Bitácora del Técnico</h4>
+                <ul id="techNotesList" class="notes-list">
+                    <!-- Dynamic Notes -->
+                </ul>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 WilTech Solutions. Tracker System v1.0</p>
+    </footer>
+
+    <script src="contact_logic.js"></script>
+    <!-- We might need to separate logic or include script.js but handle conditionally -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -340,26 +340,13 @@
                                 </label>
                             </div>
                         </div>
+                        <!-- Dynamic Model Selection (Replaces Select) -->
                         <div class="form-group">
-                            <label>Modelo</label>
-                            <select name="consoleModel" class="tech-select">
-                                <optgroup label="PlayStation">
-                                    <option value="PS5">PS5 (Fat/Slim/Pro)</option>
-                                    <option value="PS4 Pro">PS4 Pro</option>
-                                    <option value="PS4 Slim/Fat">PS4 Slim / Fat</option>
-                                </optgroup>
-                                <optgroup label="Xbox">
-                                    <option value="Series X">Xbox Series X</option>
-                                    <option value="Series S">Xbox Series S</option>
-                                    <option value="One X">Xbox One X</option>
-                                    <option value="One S">Xbox One S</option>
-                                </optgroup>
-                                <optgroup label="Nintendo">
-                                    <option value="Switch OLED">Switch OLED</option>
-                                    <option value="Switch V1/V2">Switch V1/V2</option>
-                                    <option value="Switch Lite">Switch Lite</option>
-                                </optgroup>
-                            </select>
+                            <label>Selecciona tu Modelo</label>
+                            <div id="console-model-container" class="selection-grid model-grid">
+                                <!-- Populated by JS -->
+                            </div>
+                            <input type="hidden" name="consoleModel" id="consoleModelInput" required>
                         </div>
                     </div>
 

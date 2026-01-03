@@ -1,0 +1,320 @@
+/* --- Tracking Page Styles --- */
+.tracking-container {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    min-height: 60vh;
+}
+
+.tracking-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.tracking-hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.search-box-container {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    background: rgba(10, 10, 15, 0.6);
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    color: white;
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    transition: var(--transition);
+}
+
+.search-input-wrapper input:focus {
+    outline: none;
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+    background: rgba(10, 10, 15, 0.9);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.error-msg {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Tracking Result Panel */
+.glass-panel {
+    background: rgba(19, 19, 31, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.tracking-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 1rem 0;
+    background: #333;
+    color: #fff;
+}
+
+.status-pending {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-diagnostic {
+    background: rgba(255, 166, 0, 0.2);
+    color: #ffa600;
+    border: 1px solid rgba(255, 166, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 166, 0, 0.2);
+}
+
+.status-repair {
+    background: rgba(0, 242, 255, 0.2);
+    color: var(--primary);
+    border: 1px solid rgba(0, 242, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+}
+
+.status-ready {
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.service-meta {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.service-details {
+    color: white;
+    font-size: 1.1rem;
+}
+
+/* Timeline Styles */
+.timeline-wrapper {
+    margin: 3rem 0;
+    padding: 0 1rem;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timeline-track {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    right: 40px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+    border-radius: 4px;
+}
+
+.timeline-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.timeline-step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    opacity: 0.5;
+    transition: all 0.5s ease;
+}
+
+.timeline-step.active {
+    opacity: 1;
+}
+
+.step-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-dark);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+    transition: all 0.5s ease;
+}
+
+.step-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.timeline-step.active .step-label {
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Technical Notes */
+.tech-notes h4 {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.notes-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom Scrollbar for notes */
+.notes-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notes-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.notes-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.notes-list li {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 2px solid var(--primary);
+}
+
+.note-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.note-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #eee;
+    margin: 0;
+}
+
+/* Responsive Timeline */
+@media (max-width: 600px) {
+    .timeline-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        /* Remove gap, use step padding */
+        margin-left: 0;
+        padding-left: 1rem;
+        position: relative;
+    }
+
+    .timeline-track {
+        width: 4px;
+        height: 100%;
+        left: 31px;
+        /* Align with circle center (1rem padding + 44px/2 - 2px) roughly */
+        top: 0;
+        right: auto;
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.1);
+        display: block;
+        /* Show track */
+    }
+
+    .timeline-fill {
+        width: 4px !important;
+        height: 0%;
+        /* JS needs to update this for vertical, but for now CSS visualization */
+        /* Since we can't easily flip the JS percent to height logic without JS changes, 
+           we will use a different approach: coloring the steps themselves is enough, 
+           or we rely on the specific 'active' class styling of circles. 
+           Let's hide the fill bar on mobile and rely on circle states. */
+        display: none;
+    }
+
+    .timeline-step {
+        flex-direction: row;
+        width: 100%;
+        gap: 1.5rem;
+        opacity: 0.5;
+        margin-bottom: 2rem;
+        align-items: flex-start;
+        z-index: 2;
+        /* Above track */
+    }
+
+    .timeline-step:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-step.active {
+        opacity: 1;
+    }
+
+    .step-circle {
+        min-width: 44px;
+        margin-bottom: 0;
+        background: var(--bg-dark);
+        /* Cover the track line */
+    }
+
+    .step-label {
+        font-size: 1rem;
+        text-align: left;
+        padding-top: 10px;
+        /* Align with circle center visually */
+    }
+}

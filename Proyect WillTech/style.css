@@ -152,9 +152,9 @@ header {
     width: 100%;
     z-index: 1000;
     padding: 1rem 0;
-    background: rgba(10, 10, 15, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition);
 }
@@ -163,12 +163,15 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: -0.02em;
+    z-index: 1002;
+    position: relative;
 }
 
 .logo span {
@@ -179,12 +182,14 @@ nav {
     display: flex;
     gap: 2rem;
     align-items: center;
+    list-style: none;
 }
 
 .nav-links a {
     font-weight: 500;
     font-size: 0.95rem;
     color: var(--text-muted2);
+    transition: color 0.3s;
 }
 
 .nav-links a:hover,
@@ -196,6 +201,52 @@ nav {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
+    z-index: 1002;
+    color: white;
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        max-width: 300px;
+        background: #0f0f16;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links .btn {
+        width: 100%;
+    }
 }
 
 /* Hero Section */
@@ -1187,6 +1238,33 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .selection-grid {
+        grid-template-columns: 1fr 1fr;
+        /* 2 columns on mobile for icons */
+        gap: 1rem;
+    }
+
+    .model-grid {
+        grid-template-columns: 1fr;
+        /* 1 column for detailed model cards */
+    }
+
+    .master-card .card-content {
+        padding: 1.5rem;
+    }
+
+    .master-card .icon-xl {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-progress {
+        gap: 1rem;
+        /* tighter progress bar */
+    }
 }
 
 .selection-card {
