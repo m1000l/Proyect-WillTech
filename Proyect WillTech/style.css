@@ -446,8 +446,13 @@ p {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.category-header div {
+    display: flex;
+    flex-direction: column;
+}
+
 .category-header i {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: var(--primary);
     filter: drop-shadow(0 0 10px rgba(45, 170, 177, 0.4));
 }
@@ -456,6 +461,7 @@ p {
     font-size: 2.5rem;
     font-weight: 800;
     margin: 0;
+    line-height: 1.1;
     background: linear-gradient(to right, #fff, #a5a5a5);
     background-clip: text;
     -webkit-background-clip: text;
