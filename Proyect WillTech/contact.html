@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Servicio | WilTech Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">WilTech<span>Solutions</span></a>
+                <div class="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="services.html">Servicios</a></li>
+                    <li><a href="components.html">Guía Hardware</a></li>
+                    <li><a href="contact.html" class="active btn btn-primary"
+                            style="padding: 8px 20px; border-radius: 50px;">Agendar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div style="height: 100px;"></div>
+
+    <section class="container">
+        <div class="section-title">
+            <span>Agenda tu Cita</span>
+            <h1>Diagnóstico y Servicio</h1>
+            <p>Cuéntanos qué necesitas y te ayudaremos.</p>
+        </div>
+
+        <div class="booking-card">
+            <!-- Progress Bar -->
+            <div class="form-progress">
+                <div class="progress-step active" data-step="1">1</div>
+                <div class="progress-step" data-step="2">2</div>
+                <div class="progress-step" data-step="3">3</div>
+                <div class="progress-step" data-step="4">4</div>
+            </div>
+
+            <form id="bookingForm">
+                <!-- Step 1: Device Category -->
+                <div class="form-step active" data-step="1">
+                    <h3>¿Qué equipo deseas reparar?</h3>
+                    <div class="form-group">
+                        <div class="selection-grid"
+                            style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+                            <label class="selection-card">
+                                <input type="radio" name="deviceCategory" value="torre" checked>
+                                <div class="card-content">
+                                    <i class="fas fa-server"></i>
+                                    <h4>Torre</h4>
+                                </div>
+                            </label>
+                            <label class="selection-card">
+                                <input type="radio" name="deviceCategory" value="aio">
+                                <div class="card-content">
+                                    <i class="fas fa-desktop"></i>
+                                    <h4>All-in-One</h4>
+                                </div>
+                            </label>
+                            <label class="selection-card">
+                                <input type="radio" name="deviceCategory" value="minipc">
+                                <div class="card-content">
+                                    <i class="fas fa-microchip"></i>
+                                    <h4>Mini PC</h4>
+                                </div>
+                            </label>
+                            <label class="selection-card">
+                                <input type="radio" name="deviceCategory" value="laptop">
+                                <div class="card-content">
+                                    <i class="fas fa-laptop"></i>
+                                    <h4>Laptop</h4>
+                                </div>
+                            </label>
+                            <label class="selection-card">
+                                <input type="radio" name="deviceCategory" value="console">
+                                <div class="card-content">
+                                    <i class="fas fa-gamepad"></i>
+                                    <h4>Consola</h4>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-primary btn-next">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Details -->
+                <div class="form-step" data-step="2">
+
+                    <!-- TORRE Options -->
+                    <div id="details-torre" class="dynamic-section">
+                        <h3>Detalles de tu Torre</h3>
+                        <div class="form-group">
+                            <label>Especificaciones</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <select name="torreCPU" class="tech-select">
+                                    <option value="" disabled selected>Procesador</option>
+                                    <option value="Intel Core i3/i5/i7/i9">Intel Core</option>
+                                    <option value="AMD Ryzen 3/5/7/9">AMD Ryzen</option>
+                                    <option value="Otro">Otro / No sé</option>
+                                </select>
+                                <select name="torreRAM" class="tech-select">
+                                    <option value="" disabled selected>Memoria RAM</option>
+                                    <option value="4GB - 8GB">4GB - 8GB</option>
+                                    <option value="16GB - 32GB">16GB - 32GB</option>
+                                    <option value="64GB+">64GB+</option>
+                                </select>
+                                <select name="torreStorage" class="tech-select">
+                                    <option value="" disabled selected>Disco Principal</option>
+                                    <option value="HDD">HDD (Disco Duro)</option>
+                                    <option value="SSD SATA">SSD SATA</option>
+                                    <option value="SSD M.2">SSD M.2 NVMe</option>
+                                </select>
+                                <select name="torreGPU" class="tech-select">
+                                    <option value="" disabled selected>Tarjeta Gráfica</option>
+                                    <option value="Integrada">Integrada</option>
+                                    <option value="NVIDIA GTX/RTX">NVIDIA GTX/RTX</option>
+                                    <option value="AMD Radeon">AMD Radeon</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Antigüedad del Equipo</label>
+                            <select name="torreAge" class="tech-select">
+                                <option value="Menos de 6 meses">Menos de 6 meses</option>
+                                <option value="1 año">1 año</option>
+                                <option value="2-3 años">2-3 años</option>
+                                <option value="Más de 3 años">Más de 3 años</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ALL-IN-ONE Options -->
+                    <div id="details-aio" class="dynamic-section">
+                        <h3>Detalles de tu All-in-One</h3>
+                        <div class="form-group">
+                            <label>Marca</label>
+                            <select name="aioBrand" class="tech-select">
+                                <option value="" disabled selected>Selecciona Marca</option>
+                                <option value="HP">HP</option>
+                                <option value="Lenovo">Lenovo</option>
+                                <option value="Dell">Dell</option>
+                                <option value="Apple">Apple (iMac)</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Especificaciones</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <select name="aioCPU" class="tech-select">
+                                    <option value="" disabled selected>Procesador</option>
+                                    <option value="Intel Core">Intel Core</option>
+                                    <option value="AMD Ryzen">AMD Ryzen</option>
+                                    <option value="Apple M1/M2/M3">Apple Silicon</option>
+                                </select>
+                                <select name="aioRAM" class="tech-select">
+                                    <option value="" disabled selected>Memoria RAM</option>
+                                    <option value="4GB - 8GB">4GB - 8GB</option>
+                                    <option value="16GB+">16GB+</option>
+                                </select>
+                                <select name="aioStorage" class="tech-select">
+                                    <option value="" disabled selected>Disco</option>
+                                    <option value="HDD">HDD</option>
+                                    <option value="SSD">SSD</option>
+                                </select>
+                                <select name="aioScreen" class="tech-select">
+                                    <option value="" disabled selected>Tamaño Pantalla</option>
+                                    <option value="21-24 pulgadas">21-24"</option>
+                                    <option value="27 pulgadas">27"</option>
+                                    <option value="Más de 27">Más de 27"</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Antigüedad</label>
+                            <select name="aioAge" class="tech-select">
+                                <option value="Menos de 1 año">Menos de 1 año</option>
+                                <option value="1-3 años">1-3 años</option>
+                                <option value="Más de 3 años">Más de 3 años</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- MINI PC Options -->
+                    <div id="details-minipc" class="dynamic-section">
+                        <h3>Detalles de tu Mini PC</h3>
+                        <div class="form-group">
+                            <label>Marca / Modelo</label>
+                            <select name="minipcBrand" class="tech-select">
+                                <option value="" disabled selected>Selecciona Marca</option>
+                                <option value="Intel NUC">Intel NUC</option>
+                                <option value="Minisforum">Minisforum</option>
+                                <option value="Beelink">Beelink</option>
+                                <option value="Mac Mini">Mac Mini</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Especificaciones</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <select name="minipcCPU" class="tech-select">
+                                    <option value="" disabled selected>Procesador</option>
+                                    <option value="Intel">Intel</option>
+                                    <option value="AMD">AMD</option>
+                                    <option value="Apple">Apple Silicon</option>
+                                </select>
+                                <select name="minipcRAM" class="tech-select">
+                                    <option value="" disabled selected>RAM</option>
+                                    <option value="8GB">8GB</option>
+                                    <option value="16GB">16GB</option>
+                                    <option value="32GB+">32GB+</option>
+                                </select>
+                                <select name="minipcStorage" class="tech-select">
+                                    <option value="" disabled selected>Disco</option>
+                                    <option value="SSD M.2">SSD M.2</option>
+                                    <option value="SSD SATA">SSD SATA</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LAPTOP Options -->
+                    <div id="details-laptop" class="dynamic-section">
+                        <h3>Detalles de tu Laptop</h3>
+                        <div class="form-group">
+                            <label>Marca</label>
+                            <select name="laptopBrand" class="tech-select">
+                                <option value="" disabled selected>Selecciona Marca</option>
+                                <option value="Lenovo">Lenovo</option>
+                                <option value="HP">HP</option>
+                                <option value="Dell">Dell</option>
+                                <option value="Asus">Asus</option>
+                                <option value="Acer">Acer</option>
+                                <option value="MSI">MSI</option>
+                                <option value="Apple">Apple (MacBook)</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Gama / Uso</label>
+                            <select name="laptopRange" class="tech-select">
+                                <option value="Hogar">Hogar / Oficina</option>
+                                <option value="Gamer">Gamer</option>
+                                <option value="Workstation">Workstation / Diseño</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- CONSOLE Options -->
+                    <div id="details-console" class="dynamic-section">
+                        <h3>Detalles de tu Consola</h3>
+                        <div class="form-group">
+                            <label>Plataforma</label>
+                            <div class="selection-grid" style="grid-template-columns: repeat(3, 1fr);">
+                                <label class="selection-card">
+                                    <input type="radio" name="consolePlatform" value="PlayStation" checked>
+                                    <div class="card-content">
+                                        <i class="fab fa-playstation"></i>
+                                        <h4>PlayStation</h4>
+                                    </div>
+                                </label>
+                                <label class="selection-card">
+                                    <input type="radio" name="consolePlatform" value="Xbox">
+                                    <div class="card-content">
+                                        <i class="fab fa-xbox"></i>
+                                        <h4>Xbox</h4>
+                                    </div>
+                                </label>
+                                <label class="selection-card">
+                                    <input type="radio" name="consolePlatform" value="Nintendo">
+                                    <div class="card-content">
+                                        <i class="fas fa-gamepad"></i>
+                                        <h4>Nintendo</h4>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Modelo</label>
+                            <select name="consoleModel" class="tech-select">
+                                <optgroup label="PlayStation">
+                                    <option value="PS5">PS5 (Fat/Slim/Pro)</option>
+                                    <option value="PS4 Pro">PS4 Pro</option>
+                                    <option value="PS4 Slim/Fat">PS4 Slim / Fat</option>
+                                </optgroup>
+                                <optgroup label="Xbox">
+                                    <option value="Series X">Xbox Series X</option>
+                                    <option value="Series S">Xbox Series S</option>
+                                    <option value="One X">Xbox One X</option>
+                                    <option value="One S">Xbox One S</option>
+                                </optgroup>
+                                <optgroup label="Nintendo">
+                                    <option value="Switch OLED">Switch OLED</option>
+                                    <option value="Switch V1/V2">Switch V1/V2</option>
+                                    <option value="Switch Lite">Switch Lite</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Service Selection (Common for all) -->
+                    <h3 style="margin-top: 2rem;">¿Qué servicio necesitas?</h3>
+                    <div class="selection-grid">
+                        <label class="selection-card">
+                            <input type="radio" name="serviceType" value="Mantenimiento" required>
+                            <div class="card-content">
+                                <i class="fas fa-broom"></i>
+                                <h4>Mantenimiento</h4>
+                            </div>
+                        </label>
+                        <label class="selection-card">
+                            <input type="radio" name="serviceType" value="Reparación">
+                            <div class="card-content">
+                                <i class="fas fa-tools"></i>
+                                <h4>Reparación</h4>
+                            </div>
+                        </label>
+                        <label class="selection-card">
+                            <input type="radio" name="serviceType" value="Diagnóstico">
+                            <div class="card-content">
+                                <i class="fas fa-stethoscope"></i>
+                                <h4>Diagnóstico</h4>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Dynamic Service Options (Upsells/Specifics) -->
+                    <div id="service-options-container" style="margin-top: 1.5rem;">
+                        <!-- Will be populated by JS based on Device + Service selection -->
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-prev btn-prev-step">Atrás</button>
+                        <button type="button" class="btn btn-primary btn-next">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Description -->
+                <div class="form-step" data-step="3">
+                    <h3>Notas Adicionales</h3>
+                    <div class="form-group">
+                        <label for="problemDesc">Descripción detallada (Opcional)</label>
+                        <textarea id="problemDesc" name="problemDesc" rows="4" class="tech-input"
+                            placeholder="Ej: El equipo hace un ruido extraño..."></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-prev btn-prev-step">Atrás</button>
+                        <button type="button" class="btn btn-primary btn-next">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Contact Info -->
+                <div class="form-step" data-step="4">
+                    <h3>Tus Datos</h3>
+                    <div class="form-group">
+                        <label for="userName">Nombre Completo</label>
+                        <input type="text" id="userName" name="userName" class="tech-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhone">Teléfono / WhatsApp</label>
+                        <input type="tel" id="userPhone" name="userPhone" class="tech-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email</label>
+                        <input type="email" id="userEmail" name="userEmail" class="tech-input" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-prev btn-prev-step">Atrás</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Enviar Solicitud</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo">WilTech<span>Solutions</span></a>
+                    <p style="margin-top: 1rem;">Soluciones técnicas avanzadas para gamers y profesionales.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="services.html">Mantenimiento PC</a></li>
+                        <li><a href="services.html">Reparación Laptops</a></li>
+                        <li><a href="services.html">Limpieza PS5/Xbox</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="components.html">Guía de Hardware</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fab fa-whatsapp"></i> +123 456 7890</li>
+                        <li><i class="far fa-envelope"></i> contacto@techfix.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 WilTech Solutions. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
