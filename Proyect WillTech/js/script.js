@@ -155,7 +155,7 @@ if (componentsContainer) {
 /* --- Multi-step Form Logic --- */
 
 const bookingForm = document.getElementById('bookingForm');
-if (bookingForm) {
+if (false && bookingForm) {
     const steps = document.querySelectorAll('.form-step');
     const progressSteps = document.querySelectorAll('.progress-step');
 

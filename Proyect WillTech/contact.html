@@ -8,8 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <!-- HTML2Canvas (Keep for potential PDF export) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
@@ -33,429 +35,232 @@
         </div>
     </header>
 
-    <div style="height: 100px;"></div>
+    <div style="height: 80px;"></div>
 
-    <section class="container">
-        <div class="section-title">
-            <span>Agenda tu Cita</span>
-            <h1>Diagnóstico y Servicio</h1>
-            <p>Cuéntanos qué necesitas y te ayudaremos.</p>
-        </div>
+    <section class="container full-height-section">
 
-        <div class="booking-card">
-            <!-- Progress Bar -->
-            <div class="form-progress">
-                <div class="progress-step active" data-step="1">1</div>
-                <div class="progress-step" data-step="2">2</div>
-                <div class="progress-step" data-step="3">3</div>
-                <div class="progress-step" data-step="4">4</div>
-            </div>
+        <div class="booking-layout animate-fade-in">
 
-            <form id="bookingForm">
-                <!-- Step 1: Device Category (Multi-level) -->
-                <div class="form-step active" data-step="1">
+            <!-- LEFT PANEL: LIVE SUMMARY -->
+            <aside class="summary-panel">
+                <div class="summary-content">
+                    <h3><i class="fas fa-microchip"></i> Tu Selección</h3>
+                    <p class="summary-subtitle">Configuración en tiempo real</p>
 
-                    <!-- Level Navigation (Back Button) -->
-                    <div class="level-navigation" style="margin-bottom: 1.5rem; display: none;">
-                        <button type="button" class="btn-back-level" id="btnBackLevel">
-                            <i class="fas fa-chevron-left"></i> Volver a Categorías
+                    <div class="summary-steps">
+                        <!-- Step 1 Summary -->
+                        <div class="summary-item" id="sum-step-1">
+                            <div class="icon-box empty"><i class="fas fa-question"></i></div>
+                            <div class="text-box">
+                                <span class="label">Dispositivo</span>
+                                <span class="value">---</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 Summary -->
+                        <div class="summary-item" id="sum-step-2">
+                            <div class="icon-box empty"><i class="fas fa-question"></i></div>
+                            <div class="text-box">
+                                <span class="label">Modelo</span>
+                                <span class="value">---</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 Summary -->
+                        <div class="summary-item" id="sum-step-3">
+                            <div class="icon-box empty"><i class="fas fa-question"></i></div>
+                            <div class="text-box">
+                                <span class="label">Servicio</span>
+                                <span class="value">---</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-footer">
+                        <small>ID Provisional</small>
+                        <h2 class="id-preview">----</h2>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- RIGHT PANEL: WIZARD -->
+            <main class="wizard-panel">
+
+                <!-- SUCCESS VIEW (Hidden by default) -->
+                <div id="success-view" class="success-container" style="display: none;">
+                    <div class="success-content">
+                        <div class="success-icon animate-pop">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>¡Solicitud Enviada!</h2>
+                        <p>Tu equipo está listo para ingresar a nuestro laboratorio.</p>
+
+                        <div class="tracking-card">
+                            <span>TU ID DE SEGUIMIENTO</span>
+                            <h1 id="final-tracking-id">PC-8839</h1>
+                            <p>Guarda este código para consultar el estado.</p>
+                        </div>
+
+                        <a href="rastreo.html" class="btn btn-outline"
+                            style="width: 100%; justify-content: center; margin-top: 1rem;">
+                            Ir a Rastreo <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                        </a>
+                        <a href="index.html" class="btn-text">Volver al Inicio</a>
+                    </div>
+                </div>
+
+                <!-- WIZARD FORM -->
+                <form id="wizard-form">
+
+                    <!-- Progress Indicators -->
+                    <div class="wizard-progress">
+                        <div class="step-dot active" data-step="1"></div>
+                        <div class="step-dot" data-step="2"></div>
+                        <div class="step-dot" data-step="3"></div>
+                        <div class="step-dot" data-step="4"></div>
+                    </div>
+
+                    <!-- STEP 1: CATEGORY -->
+                    <div class="wizard-step active" id="step-1">
+                        <h2 class="step-title">¿Qué quieres reparar hoy?</h2>
+                        <div class="cards-grid">
+
+                            <!-- PC Option -->
+                            <div class="brand-card brand-blue" onclick="selectDevice('PC')">
+                                <div class="brand-icon"><i class="fas fa-desktop"></i></div>
+                                <h4>PC & Laptop</h4>
+                            </div>
+
+                            <!-- PlayStation -->
+                            <div class="brand-card brand-sony" onclick="selectDevice('PlayStation')">
+                                <div class="brand-icon"><i class="fab fa-playstation"></i></div>
+                                <h4>PlayStation</h4>
+                            </div>
+
+                            <!-- Xbox -->
+                            <div class="brand-card brand-xbox" onclick="selectDevice('Xbox')">
+                                <div class="brand-icon"><i class="fab fa-xbox"></i></div>
+                                <h4>Xbox</h4>
+                            </div>
+
+                            <!-- Nintendo -->
+                            <div class="brand-card brand-nintendo" onclick="selectDevice('Nintendo')">
+                                <div class="brand-icon"><i class="fas fa-gamepad"></i></div>
+                                <h4>Nintendo</h4>
+                            </div>
+
+                            <!-- Handhelds -->
+                            <div class="brand-card brand-purple" onclick="selectDevice('Handheld')">
+                                <div class="brand-icon"><i class="fas fa-mobile-alt"></i></div>
+                                <h4>Handheld PC</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: MODELS (Dynamic) -->
+                    <div class="wizard-step" id="step-2">
+                        <div class="step-header">
+                            <button type="button" class="btn-back" onclick="prevStep()"><i
+                                    class="fas fa-arrow-left"></i></button>
+                            <h2 class="step-title">Selecciona tu Modelo</h2>
+                        </div>
+                        <div class="cards-grid" id="models-grid">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: SERVICES -->
+                    <div class="wizard-step" id="step-3">
+                        <div class="step-header">
+                            <button type="button" class="btn-back" onclick="prevStep()"><i
+                                    class="fas fa-arrow-left"></i></button>
+                            <h2 class="step-title">Elige el Servicio</h2>
+                        </div>
+
+                        <div id="service-restrictions-msg"></div>
+
+                        <div class="cards-grid" id="services-grid">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: CONTACT -->
+                    <div class="wizard-step" id="step-4">
+                        <div class="step-header">
+                            <button type="button" class="btn-back" onclick="prevStep()"><i
+                                    class="fas fa-arrow-left"></i></button>
+                            <h2 class="step-title">Tus Datos</h2>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" id="userName" class="tech-input" placeholder="Tu nombre" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Teléfono</label>
+                            <input type="tel" id="userPhone" class="tech-input" placeholder="Tu WhatsApp" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Detalle del problema (Opcional)</label>
+                            <textarea id="issueDesc" class="tech-input" rows="3"
+                                placeholder="¿Qué le pasa a tu equipo?"></textarea>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-block btn-lg" onclick="finishBooking()">
+                            CONFIRMAR CITA <i class="fas fa-check"></i>
                         </button>
                     </div>
 
-                    <h3 id="step1Title">¿Qué equipo deseas reparar?</h3>
-
-                    <!-- LEVEL 1: Master Selection -->
-                    <div id="level-1-selection" class="selection-grid two-columns">
-                        <div class="selection-card master-card" data-target="pc">
-                            <div class="card-content">
-                                <i class="fas fa-desktop icon-xl"></i>
-                                <h4>PC & Laptops</h4>
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Torres, AIO,
-                                    Portátiles</p>
-                            </div>
-                        </div>
-                        <div class="selection-card master-card" data-target="console">
-                            <div class="card-content">
-                                <i class="fas fa-gamepad icon-xl"></i>
-                                <h4>Consolas</h4>
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">PlayStation,
-                                    Xbox, Handhelds</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- LEVEL 2: Sub-type Selection -->
-                    <div id="level-2-selection" style="display: none;">
-
-                        <!-- Subtypes for PC -->
-                        <div id="subtype-pc" class="subtype-group" style="display: none;">
-                            <div class="selection-grid">
-                                <label class="selection-card">
-                                    <input type="radio" name="deviceCategory" value="torre">
-                                    <div class="card-content">
-                                        <i class="fas fa-server"></i>
-                                        <h4>Torre</h4>
-                                    </div>
-                                </label>
-                                <label class="selection-card">
-                                    <input type="radio" name="deviceCategory" value="laptop">
-                                    <div class="card-content">
-                                        <i class="fas fa-laptop"></i>
-                                        <h4>Laptop</h4>
-                                    </div>
-                                </label>
-                                <label class="selection-card">
-                                    <input type="radio" name="deviceCategory" value="aio">
-                                    <div class="card-content">
-                                        <i class="fas fa-tv"></i>
-                                        <h4>All-in-One</h4>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Subtypes for Consoles -->
-                        <div id="subtype-console" class="subtype-group" style="display: none;">
-                            <div class="selection-grid">
-                                <label class="selection-card">
-                                    <input type="radio" name="deviceCategory" value="console-ps">
-                                    <div class="card-content">
-                                        <i class="fab fa-playstation"></i>
-                                        <h4>PlayStation</h4>
-                                    </div>
-                                </label>
-                                <label class="selection-card">
-                                    <input type="radio" name="deviceCategory" value="console-xbox">
-                                    <div class="card-content">
-                                        <i class="fab fa-xbox"></i>
-                                        <h4>Xbox</h4>
-                                    </div>
-                                </label>
-                                <label class="selection-card">
-                                    <input type="radio" name="deviceCategory" value="console-portable">
-                                    <div class="card-content">
-                                        <i class="fas fa-gamepad"></i>
-                                        <h4>Handhelds</h4>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="form-buttons" style="display: none;">
-                        <!-- Next button hidden for Zero-Click flow -->
-                        <button type="button" class="btn btn-primary btn-next" disabled>Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- Step 2: Details -->
-                <div class="form-step" data-step="2">
-
-                    <!-- TORRE Options -->
-                    <div id="details-torre" class="dynamic-section">
-                        <h3>Detalles de tu Torre</h3>
-                        <div class="form-group">
-                            <label>Especificaciones</label>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <select name="torreCPU" class="tech-select">
-                                    <option value="" disabled selected>Procesador</option>
-                                    <option value="Intel Core i3/i5/i7/i9">Intel Core</option>
-                                    <option value="AMD Ryzen 3/5/7/9">AMD Ryzen</option>
-                                    <option value="Otro">Otro / No sé</option>
-                                </select>
-                                <select name="torreRAM" class="tech-select">
-                                    <option value="" disabled selected>Memoria RAM</option>
-                                    <option value="4GB - 8GB">4GB - 8GB</option>
-                                    <option value="16GB - 32GB">16GB - 32GB</option>
-                                    <option value="64GB+">64GB+</option>
-                                </select>
-                                <select name="torreStorage" class="tech-select">
-                                    <option value="" disabled selected>Disco Principal</option>
-                                    <option value="HDD">HDD (Disco Duro)</option>
-                                    <option value="SSD SATA">SSD SATA</option>
-                                    <option value="SSD M.2">SSD M.2 NVMe</option>
-                                </select>
-                                <select name="torreGPU" class="tech-select">
-                                    <option value="" disabled selected>Tarjeta Gráfica</option>
-                                    <option value="Integrada">Integrada</option>
-                                    <option value="NVIDIA GTX/RTX">NVIDIA GTX/RTX</option>
-                                    <option value="AMD Radeon">AMD Radeon</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Antigüedad del Equipo</label>
-                            <select name="torreAge" class="tech-select">
-                                <option value="Menos de 6 meses">Menos de 6 meses</option>
-                                <option value="1 año">1 año</option>
-                                <option value="2-3 años">2-3 años</option>
-                                <option value="Más de 3 años">Más de 3 años</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- ALL-IN-ONE Options -->
-                    <div id="details-aio" class="dynamic-section">
-                        <h3>Detalles de tu All-in-One</h3>
-                        <div class="form-group">
-                            <label>Marca</label>
-                            <select name="aioBrand" class="tech-select">
-                                <option value="" disabled selected>Selecciona Marca</option>
-                                <option value="HP">HP</option>
-                                <option value="Lenovo">Lenovo</option>
-                                <option value="Dell">Dell</option>
-                                <option value="Apple">Apple (iMac)</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Especificaciones</label>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <select name="aioCPU" class="tech-select">
-                                    <option value="" disabled selected>Procesador</option>
-                                    <option value="Intel Core">Intel Core</option>
-                                    <option value="AMD Ryzen">AMD Ryzen</option>
-                                    <option value="Apple M1/M2/M3">Apple Silicon</option>
-                                </select>
-                                <select name="aioRAM" class="tech-select">
-                                    <option value="" disabled selected>Memoria RAM</option>
-                                    <option value="4GB - 8GB">4GB - 8GB</option>
-                                    <option value="16GB+">16GB+</option>
-                                </select>
-                                <select name="aioStorage" class="tech-select">
-                                    <option value="" disabled selected>Disco</option>
-                                    <option value="HDD">HDD</option>
-                                    <option value="SSD">SSD</option>
-                                </select>
-                                <select name="aioScreen" class="tech-select">
-                                    <option value="" disabled selected>Tamaño Pantalla</option>
-                                    <option value="21-24 pulgadas">21-24"</option>
-                                    <option value="27 pulgadas">27"</option>
-                                    <option value="Más de 27">Más de 27"</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Antigüedad</label>
-                            <select name="aioAge" class="tech-select">
-                                <option value="Menos de 1 año">Menos de 1 año</option>
-                                <option value="1-3 años">1-3 años</option>
-                                <option value="Más de 3 años">Más de 3 años</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- MINI PC Options -->
-                    <div id="details-minipc" class="dynamic-section">
-                        <h3>Detalles de tu Mini PC</h3>
-                        <div class="form-group">
-                            <label>Marca / Modelo</label>
-                            <select name="minipcBrand" class="tech-select">
-                                <option value="" disabled selected>Selecciona Marca</option>
-                                <option value="Intel NUC">Intel NUC</option>
-                                <option value="Minisforum">Minisforum</option>
-                                <option value="Beelink">Beelink</option>
-                                <option value="Mac Mini">Mac Mini</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Especificaciones</label>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <select name="minipcCPU" class="tech-select">
-                                    <option value="" disabled selected>Procesador</option>
-                                    <option value="Intel">Intel</option>
-                                    <option value="AMD">AMD</option>
-                                    <option value="Apple">Apple Silicon</option>
-                                </select>
-                                <select name="minipcRAM" class="tech-select">
-                                    <option value="" disabled selected>RAM</option>
-                                    <option value="8GB">8GB</option>
-                                    <option value="16GB">16GB</option>
-                                    <option value="32GB+">32GB+</option>
-                                </select>
-                                <select name="minipcStorage" class="tech-select">
-                                    <option value="" disabled selected>Disco</option>
-                                    <option value="SSD M.2">SSD M.2</option>
-                                    <option value="SSD SATA">SSD SATA</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- LAPTOP Options -->
-                    <div id="details-laptop" class="dynamic-section">
-                        <h3>Detalles de tu Laptop</h3>
-                        <div class="form-group">
-                            <label>Marca</label>
-                            <select name="laptopBrand" class="tech-select">
-                                <option value="" disabled selected>Selecciona Marca</option>
-                                <option value="Lenovo">Lenovo</option>
-                                <option value="HP">HP</option>
-                                <option value="Dell">Dell</option>
-                                <option value="Asus">Asus</option>
-                                <option value="Acer">Acer</option>
-                                <option value="MSI">MSI</option>
-                                <option value="Apple">Apple (MacBook)</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Gama / Uso</label>
-                            <select name="laptopRange" class="tech-select">
-                                <option value="Hogar">Hogar / Oficina</option>
-                                <option value="Gamer">Gamer</option>
-                                <option value="Workstation">Workstation / Diseño</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- CONSOLE Options -->
-                    <div id="details-console" class="dynamic-section">
-                        <h3>Detalles de tu Consola</h3>
-                        <div class="form-group">
-                            <label>Plataforma</label>
-                            <div class="selection-grid" style="grid-template-columns: repeat(3, 1fr);">
-                                <label class="selection-card">
-                                    <input type="radio" name="consolePlatform" value="PlayStation" checked>
-                                    <div class="card-content">
-                                        <i class="fab fa-playstation"></i>
-                                        <h4>PlayStation</h4>
-                                    </div>
-                                </label>
-                                <label class="selection-card">
-                                    <input type="radio" name="consolePlatform" value="Xbox">
-                                    <div class="card-content">
-                                        <i class="fab fa-xbox"></i>
-                                        <h4>Xbox</h4>
-                                    </div>
-                                </label>
-                                <label class="selection-card">
-                                    <input type="radio" name="consolePlatform" value="Nintendo">
-                                    <div class="card-content">
-                                        <i class="fas fa-gamepad"></i>
-                                        <h4>Nintendo</h4>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <!-- Dynamic Model Selection (Replaces Select) -->
-                        <div class="form-group">
-                            <label>Selecciona tu Modelo</label>
-                            <div id="console-model-container" class="selection-grid model-grid">
-                                <!-- Populated by JS -->
-                            </div>
-                            <input type="hidden" name="consoleModel" id="consoleModelInput" required>
-                        </div>
-                    </div>
-
-                    <!-- Service Selection (Common for all) -->
-                    <h3 style="margin-top: 2rem;">¿Qué servicio necesitas?</h3>
-                    <div class="selection-grid">
-                        <label class="selection-card">
-                            <input type="radio" name="serviceType" value="Mantenimiento" required>
-                            <div class="card-content">
-                                <i class="fas fa-broom"></i>
-                                <h4>Mantenimiento</h4>
-                            </div>
-                        </label>
-                        <label class="selection-card">
-                            <input type="radio" name="serviceType" value="Reparación">
-                            <div class="card-content">
-                                <i class="fas fa-tools"></i>
-                                <h4>Reparación</h4>
-                            </div>
-                        </label>
-                        <label class="selection-card">
-                            <input type="radio" name="serviceType" value="Diagnóstico">
-                            <div class="card-content">
-                                <i class="fas fa-stethoscope"></i>
-                                <h4>Diagnóstico</h4>
-                            </div>
-                        </label>
-                    </div>
-
-                    <!-- Dynamic Service Options (Upsells/Specifics) -->
-                    <div id="service-options-container" style="margin-top: 1.5rem;">
-                        <!-- Will be populated by JS based on Device + Service selection -->
-                    </div>
-
-                    <div class="form-buttons">
-                        <button type="button" class="btn btn-prev btn-prev-step">Atrás</button>
-                        <button type="button" class="btn btn-primary btn-next">Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Description -->
-                <div class="form-step" data-step="3">
-                    <h3>Notas Adicionales</h3>
-                    <div class="form-group">
-                        <label for="problemDesc">Descripción detallada (Opcional)</label>
-                        <textarea id="problemDesc" name="problemDesc" rows="4" class="tech-input"
-                            placeholder="Ej: El equipo hace un ruido extraño..."></textarea>
-                    </div>
-                    <div class="form-buttons">
-                        <button type="button" class="btn btn-prev btn-prev-step">Atrás</button>
-                        <button type="button" class="btn btn-primary btn-next">Siguiente</button>
-                    </div>
-                </div>
-
-                <!-- Step 4: Contact Info -->
-                <div class="form-step" data-step="4">
-                    <h3>Tus Datos</h3>
-                    <div class="form-group">
-                        <label for="userName">Nombre Completo</label>
-                        <input type="text" id="userName" name="userName" class="tech-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="userPhone">Teléfono / WhatsApp</label>
-                        <input type="tel" id="userPhone" name="userPhone" class="tech-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="userEmail">Email</label>
-                        <input type="email" id="userEmail" name="userEmail" class="tech-input" required>
-                    </div>
-                    <div class="form-buttons">
-                        <button type="button" class="btn btn-prev btn-prev-step">Atrás</button>
-                        <button type="submit" class="btn btn-primary" id="submitBtn">Enviar Solicitud</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </main>
         </div>
 
     </section>
 
-    <!-- Footer -->
+    <!-- Unified Footer (Same as Index) -->
     <footer>
         <div class="container">
             <div class="footer-grid">
+                <!-- Col 1 -->
                 <div class="footer-col">
                     <a href="#" class="logo">WilTech<span>Solutions</span></a>
-                    <p style="margin-top: 1rem;">Soluciones técnicas avanzadas para gamers y profesionales.</p>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        Tecnología de punta para gamers exigentes. Llevamos tu hardware al siguiente nivel.
+                    </p>
                 </div>
+
+                <!-- Col 2 -->
                 <div class="footer-col">
                     <h4>Servicios</h4>
-                    <ul>
-                        <li><a href="services.html">Mantenimiento PC</a></li>
-                        <li><a href="services.html">Reparación Laptops</a></li>
-                        <li><a href="services.html">Limpieza PS5/Xbox</a></li>
+                    <ul class="footer-links">
+                        <li><a href="services.html">PC & Laptops</a></li>
+                        <li><a href="services.html">PlayStation & Xbox</a></li>
+                        <li><a href="services.html">Nintendo & Steam Deck</a></li>
                     </ul>
                 </div>
+
+                <!-- Col 3 -->
                 <div class="footer-col">
-                    <h4>Enlaces</h4>
-                    <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="components.html">Guía de Hardware</a></li>
+                    <h4>Compañía</h4>
+                    <ul class="footer-links">
+                        <li><a href="como-trabajamos.html">Sobre Nosotros</a></li>
+                        <li><a href="#">Política de Garantía</a></li>
                         <li><a href="contact.html">Contacto</a></li>
                     </ul>
                 </div>
+
+                <!-- Col 4 -->
                 <div class="footer-col">
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li><i class="fab fa-whatsapp"></i> +123 456 7890</li>
-                        <li><i class="far fa-envelope"></i> contacto@techfix.com</li>
+                    <h4>Contacto Rápido</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-whatsapp"></i> +123 456 7890</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> contacto@wiltech.com</a></li>
                     </ul>
+                    <a href="contact.html" class="btn btn-primary"
+                        style="margin-top: 1rem; width: 100%; font-size: 0.9rem;">AGENDARSE AHORA</a>
                 </div>
             </div>
             <div class="copyright">
@@ -464,7 +269,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/contact_logic.js"></script>
 </body>
 
 </html>
