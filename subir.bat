@@ -4,5 +4,5 @@ git add .
 git commit -m "%mejora%"
 git push origin main
 echo.
-echo ✅ ¡Cambios subidos con el mensaje: %mejora%!
+echo ✅ ¡Cambios subidos a GitHub con el mensaje: %mejora%!
 pause
