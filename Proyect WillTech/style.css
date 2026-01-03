@@ -56,6 +56,79 @@ body {
     animation: introZoom 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+/* Process Section (Cómo Trabajamos) */
+.process-section {
+    padding: 6rem 0;
+    position: relative;
+}
+
+.process-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+    text-align: center;
+    background: linear-gradient(to right, #fff, #a5a5a5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.process-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.step-card {
+    text-align: center;
+    flex: 1 1 200px;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 15px rgba(45, 170, 177, 0.3);
+    position: relative;
+    background: rgba(10, 10, 15, 0.5);
+}
+
+.step-title {
+    color: var(--text-main);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.step-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.process-cta-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -655,6 +728,159 @@ footer {
         text-align: left;
         /* Keep lists readable on mobile */
         padding-left: 1rem;
+    }
+}
+
+/* Process Detail Page Styles (Migrated) */
+.process-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.process-detail-card {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.step-number-large {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.1);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.process-detail-card.highlight-step .step-number-large {
+    color: transparent;
+    /* Text gradient handles color */
+}
+
+.step-line {
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary), transparent);
+    flex-grow: 1;
+    margin-top: 10px;
+}
+
+.step-content {
+    flex-grow: 1;
+    background: rgba(20, 20, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.process-detail-card:hover .step-content {
+    background: rgba(30, 30, 45, 0.8);
+    border-color: var(--primary);
+    transform: translateX(10px);
+}
+
+.step-icon-wrapper {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: inline-block;
+    padding: 10px;
+    background: rgba(45, 170, 177, 0.1);
+    border-radius: 8px;
+}
+
+.pulsing-icon {
+    animation: softPulse 2s infinite;
+    color: var(--accent);
+    background: rgba(255, 80, 80, 0.1);
+}
+
+.detail-list {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.detail-list li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+}
+
+.detail-list li i {
+    color: var(--primary);
+    font-size: 0.8rem;
+}
+
+.tracking-feature-box {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.tracking-feature-box i {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+/* Commitment Section */
+.commitment-box {
+    background: linear-gradient(145deg, rgba(20, 20, 30, 0.9), rgba(10, 10, 15, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem;
+    border-radius: 16px;
+}
+
+.commitment-item {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.commitment-item i {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.3));
+}
+
+.commitment-item h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .process-detail-card {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .step-indicator {
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .step-line {
+        display: none;
+    }
+
+    .process-detail-card:hover .step-content {
+        transform: translateY(-5px);
     }
 }
 
